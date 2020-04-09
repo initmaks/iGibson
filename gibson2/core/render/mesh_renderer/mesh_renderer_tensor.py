@@ -13,7 +13,7 @@ class MeshRendererG2G(MeshRenderer):
 
     def __init__(self, width=512, height=512, fov=90, device_idx=0, use_fisheye=False):
         super(MeshRendererG2G, self).__init__(width, height, fov, device_idx, use_fisheye)
-        self.cuda_idx = get_cuda_device(self.device_minor)
+        self.cuda_idx = device_idx #get_cuda_device(self.device_minor)
         print("Using cuda device {}".format(self.cuda_idx))
         with torch.cuda.device(self.cuda_idx):
             self.image_tensor = torch.cuda.ByteTensor(height, width, 4).cuda()
